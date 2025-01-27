@@ -1,50 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
-class  ToDOTile extends StatelessWidget {
+
+class ToDOTile extends StatelessWidget {
   final String taskName;
   final bool taskCompleted;
-  Function(bool?)?onChanged;
-  Function(BuildContext)? deleteFunction;
+  final void Function(bool?) onChanged;
+  final void Function(BuildContext) deleteFunction;
+  final String? subtitle;
 
-  ToDOTile({super.key,required this.taskName, required this.taskCompleted,
-  required this.onChanged, required this.deleteFunction});
+  const ToDOTile({
+    super.key,
+    required this.taskName,
+    required this.taskCompleted,
+    required this.onChanged,
+    required this.deleteFunction,
+    this.subtitle,
+  });
 
   @override
   Widget build(BuildContext context) {
-
-
-
-    return Padding(
-      padding: const EdgeInsets.only(left:25.0,right: 25,top: 25),
-      child: Slidable(
-        endActionPane: ActionPane(
-          motion: StretchMotion(),
-          children: [
-            SlidableAction(onPressed: deleteFunction,
-            icon: Icons.delete_rounded,backgroundColor: Colors.red,
-            borderRadius: BorderRadius.circular(12),),
-
-          ],
+    return ListTile(
+      leading: Checkbox(
+        value: taskCompleted,
+        onChanged: onChanged,
+      ),
+      title: Text(
+        taskName,
+        style: TextStyle(
+          decoration: taskCompleted ? TextDecoration.lineThrough : null,
         ),
-        child: Container(
-          padding: EdgeInsets.all(24),
-        
-            decoration: BoxDecoration(color: Colors.lightGreen[400],
-            borderRadius: BorderRadius.circular(12), ),
-          child: Row(
-            children: [
-              Checkbox(value: taskCompleted,
-                  onChanged: onChanged,
-                activeColor: Colors.black,
-              ),
-              Text(taskName,
-              style: TextStyle(decoration:taskCompleted? TextDecoration.lineThrough : TextDecoration.none),),
-            ],
-          ),
-        
-        
-        
-        ),
+      ),
+      subtitle: subtitle != null ? Text(subtitle!) : null,
+      trailing: IconButton(
+        icon: const Icon(Icons.delete),
+        onPressed: () => deleteFunction(context),
       ),
     );
   }

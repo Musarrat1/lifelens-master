@@ -6,7 +6,7 @@ class AddContactScreen extends StatefulWidget {
   const AddContactScreen({required this.onAddContact, Key? key}) : super(key: key);
 
   @override
-  _AddContactScreenState createState() => _AddContactScreenState();
+  State<AddContactScreen> createState() => _AddContactScreenState();
 }
 
 class _AddContactScreenState extends State<AddContactScreen> {
@@ -24,12 +24,12 @@ class _AddContactScreenState extends State<AddContactScreen> {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
-        title: Text(
+        title: const Text(
           "New Contact",
           style: TextStyle(
             fontSize: 20,
@@ -40,7 +40,6 @@ class _AddContactScreenState extends State<AddContactScreen> {
         actions: [
           TextButton(
             onPressed: () {
-              // Pass the contact data back to the parent screen
               widget.onAddContact({
                 "firstName": firstNameController.text,
                 "lastName": lastNameController.text,
@@ -51,7 +50,7 @@ class _AddContactScreenState extends State<AddContactScreen> {
               });
               Navigator.pop(context);
             },
-            child: Text(
+            child: const Text(
               "Done",
               style: TextStyle(
                 fontSize: 16,
@@ -75,7 +74,7 @@ class _AddContactScreenState extends State<AddContactScreen> {
                     CircleAvatar(
                       radius: 40,
                       backgroundColor: Colors.grey[300],
-                      child: Icon(
+                      child: const Icon(
                         Icons.person,
                         size: 40,
                         color: Colors.white,
@@ -86,7 +85,7 @@ class _AddContactScreenState extends State<AddContactScreen> {
                       onPressed: () {
                         // Add photo logic
                       },
-                      child: Text(
+                      child: const Text(
                         "Add Photo",
                         style: TextStyle(color: Colors.green, fontSize: 16),
                       ),
@@ -95,8 +94,6 @@ class _AddContactScreenState extends State<AddContactScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-
-              // Input Fields
               CustomTextField(
                 controller: firstNameController,
                 hintText: "First name",
@@ -150,15 +147,15 @@ class CustomTextField extends StatelessWidget {
         contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: Colors.green),
+          borderSide: const BorderSide(color: Colors.green),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: Colors.green),
+          borderSide: const BorderSide(color: Colors.green),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: Colors.green, width: 2),
+          borderSide: const BorderSide(color: Colors.green, width: 2),
         ),
       ),
     );

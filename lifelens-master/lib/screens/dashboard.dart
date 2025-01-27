@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:lifelens/screens/contactDetails.dart';
 import 'package:lifelens/screens/splash_screen.dart';
 import 'package:lifelens/screens/todo.dart';
@@ -14,14 +13,6 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  late Box myBox;
-
-  @override
-  void initState() {
-    super.initState();
-    myBox = Hive.box('myBox'); // Use the globally initialized Hive box
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,7 +76,7 @@ class _DashboardState extends State<Dashboard> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => Todo(myBox: myBox)),
+                              builder: (context) => const Todo()),
                         );
                       }
                     },
@@ -93,8 +84,11 @@ class _DashboardState extends State<Dashboard> {
                       'icon': Icons.contact_phone,
                       'label': 'Contact Details',
                       'onTap': () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> ContactDetails()));
-                        // Handle navigation
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ContactDetails()),
+                        );
                       }
                     },
                     {
