@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:lifelens/screens/phone_verification_screen.dart';
+import 'package:lifelens/screens/dashboard.dart';
+//import 'package:lifelens/screens/phone_verification_screen.dart';
 import '../service/auth_service.dart';
 import 'package:lifelens/screens/sign_in.dart';
 
 class SignUpScreen extends StatefulWidget {
+  static const routeName = '/signupscreen';
   const SignUpScreen({super.key});
 
   @override
@@ -18,12 +20,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final _confirmPasswordController = TextEditingController();
   bool _isLoading = false;
 
-  // Regex Patterns
   final RegExp nameRegex = RegExp(r'^[A-Za-z]+$');
   final RegExp emailRegex = RegExp(r'^[a-z0-9]+@(gmail|yahoo|outlook)\.com$');
 
   void _register() async {
-    // Name Validation
+
     if (!nameRegex.hasMatch(_nameController.text.trim())) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Invalid name. Use alphabetic characters only.")),
@@ -31,7 +32,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       return;
     }
 
-    // Email Validation
+
     if (!emailRegex.hasMatch(_emailController.text.trim())) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Invalid email. Use a valid Gmail, Yahoo, or Outlook address.")),
@@ -39,7 +40,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       return;
     }
 
-    // Password Length Validation
+
     if (_passwordController.text.trim().length != 6) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Password must be exactly 6 characters long.")),
@@ -47,7 +48,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       return;
     }
 
-    // Confirm Password Validation
+
     if (_passwordController.text.trim() != _confirmPasswordController.text.trim()) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Passwords do not match.")),
@@ -74,7 +75,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         const SnackBar(content: Text("Sign-up successful! Please log in.")),
       );
 
-      // Redirect to Sign-In screen
+
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => SignInScreen()),
@@ -112,7 +113,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     .copyWith(fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 20),
-              // Name TextField
+
               TextField(
                 controller: _nameController,
                 decoration: const InputDecoration(
@@ -130,7 +131,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-              // Email TextField
+
               TextField(
                 controller: _emailController,
                 decoration: const InputDecoration(
@@ -148,7 +149,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-              // Password TextField
+
               TextField(
                 controller: _passwordController,
                 decoration: const InputDecoration(
@@ -167,7 +168,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 obscureText: true,
               ),
               const SizedBox(height: 20),
-              // Confirm Password TextField
               TextField(
                 controller: _confirmPasswordController,
                 decoration: const InputDecoration(
@@ -186,9 +186,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 obscureText: true,
               ),
               const SizedBox(height: 20),
-              // Sign Up Button
+
               _isLoading
-                  ? const CircularProgressIndicator()
+                  ? const CircularProgressIndicator(color: Colors.green,)
                   : ElevatedButton(
                 onPressed: _register,
                 style: ElevatedButton.styleFrom(
@@ -201,7 +201,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 child: const Text("Sign Up"),
               ),
               const SizedBox(height: 20),
-              // Sign In Link
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

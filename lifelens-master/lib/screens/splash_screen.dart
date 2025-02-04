@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatelessWidget {
-  static const routeName = '/splash'; // Static route name for navigation
+  static const routeName = '/splash';
 
   @override
   Widget build(BuildContext context) {
-    // To prevent multiple navigation calls
+
     bool _hasNavigated = false;
 
-    // Delayed navigation to Login Screen
+
     Future.delayed(const Duration(seconds: 3), () {
       if (!_hasNavigated) {
         _hasNavigated = true;
-        Navigator.pushReplacementNamed(context, '/login');
+        Navigator.pushReplacementNamed(context, '/signinscreen');
       }
     });
 
@@ -32,7 +32,7 @@ class SplashScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            // Subtitle with RichText
+
             RichText(
               textAlign: TextAlign.center,
               text: const TextSpan(
@@ -57,12 +57,12 @@ class SplashScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 30),
-            // Get Started Button
+
             ElevatedButton(
               onPressed: () {
                 if (!_hasNavigated) {
                   _hasNavigated = true;
-                  Navigator.pushReplacementNamed(context, '/login'); // Navigate to Login Screen
+                  Navigator.pushReplacementNamed(context, '/signinscreen');
                 }
               },
               style: ElevatedButton.styleFrom(

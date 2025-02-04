@@ -3,8 +3,17 @@ class UserModel {
   final String name;
   final String email;
   final String password; // Encrypted password
+  final String? facebookId; // Optional field
+  final String? bloodGroup; // Optional field
 
-  UserModel({required this.uid, required this.name, required this.email, required this.password});
+  UserModel({
+    required this.uid,
+    required this.name,
+    required this.email,
+    required this.password,
+    this.facebookId,
+    this.bloodGroup,
+  });
 
   Map<String, dynamic> toMap() {
     return {
@@ -12,6 +21,8 @@ class UserModel {
       'name': name,
       'email': email,
       'password': password, // Store encrypted password
+      'facebookId': facebookId, // Include facebookId
+      'bloodGroup': bloodGroup, // Include bloodGroup
     };
   }
 
@@ -21,6 +32,8 @@ class UserModel {
       name: map['name'],
       email: map['email'],
       password: map['password'],
+      facebookId: map['facebookId'], // Map facebookId
+      bloodGroup: map['bloodGroup'], // Map bloodGroup
     );
   }
 }

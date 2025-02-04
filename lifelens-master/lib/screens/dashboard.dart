@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:lifelens/screens/add.dart';
+import 'package:lifelens/screens/addTransactionScreen.dart';
 import 'package:lifelens/screens/contactDetails.dart';
+import 'package:lifelens/screens/healthDataScreen.dart';
+import 'package:lifelens/screens/healthEntryScreen.dart';
+import 'package:lifelens/screens/schedule.dart';
+import 'package:lifelens/screens/sign_in.dart';
 import 'package:lifelens/screens/splash_screen.dart';
 import 'package:lifelens/screens/todo.dart';
 import 'package:lifelens/screens/userProfile.dart';
@@ -16,22 +22,40 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const _AppBar(),
+      appBar: AppBar(
+         leading: IconButton(onPressed: (){
+
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>SignInScreen()));
+    }, icon: Icon(Icons.arrow_back
+          ),),
+        backgroundColor: Colors.white,
+        title: Text("LifeLens",style: TextStyle(color: Colors.green,fontSize: 20,fontWeight: FontWeight.bold),),
+        elevation: 0,
+
+      ),
+
+
+
       backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+
             const SizedBox(height: 40),
+
             const Text(
               'Welcome to LifeLens',
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 32,
                 fontWeight: FontWeight.bold,
                 color: Colors.green,
+
               ),
+
               textAlign: TextAlign.start,
+
             ),
             const SizedBox(height: 40),
             Expanded(
@@ -51,7 +75,7 @@ class _DashboardState extends State<Dashboard> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const Userprofile()),
+                              builder: (context) =>  UserInfoScreen()),
                         );
                       }
                     },
@@ -59,6 +83,10 @@ class _DashboardState extends State<Dashboard> {
                       'icon': Icons.monetization_on,
                       'label': 'Financial Overview',
                       'onTap': () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomeScreen()));
                         // Handle navigation
                       }
                     },
@@ -66,6 +94,10 @@ class _DashboardState extends State<Dashboard> {
                       'icon': Icons.schedule,
                       'label': 'Schedule Overview',
                       'onTap': () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                            builder: (context) => ScheduleScreen()));
                         // Handle navigation
                       }
                     },
@@ -95,6 +127,12 @@ class _DashboardState extends State<Dashboard> {
                       'icon': Icons.health_and_safety,
                       'label': 'Health',
                       'onTap': () {
+
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>  HealthDataScreen()),
+                        );
                         // Handle navigation
                       }
                     },
@@ -136,24 +174,7 @@ class _DashboardState extends State<Dashboard> {
   }
 }
 
-class _AppBar extends StatelessWidget implements PreferredSizeWidget {
-  const _AppBar();
 
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      title: const Text(
-        'LifeLens',
-        style: TextStyle(color: Colors.green),
-      ),
-      backgroundColor: Colors.white,
-      elevation: 0,
-    );
-  }
-
-  @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
-}
 
 class _DashboardItem extends StatelessWidget {
   final IconData icon;
